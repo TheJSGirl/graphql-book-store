@@ -1,4 +1,5 @@
 const express = require("express");
+require('dotenv').config();
 const mainRoutes = require('./src/modules/index');
 const app = express();
 
