@@ -3,41 +3,37 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const bookSchema = new Schema ({
-
     user: {
         type: String,
-        trim: true
+        trim: true,
+        required: true,
     },
-
     name: {
         type: String,
         trim: true,
+        required: true,
     },
-
-    author: {
-        type: String,
-        trim: true,
+    authors: {
+        type: Array,
+        default: [],
     },
-    
     edition: {
-        type: Number
+        type: String,
+        default: '',
     },
-
     image: {
-        type: String
-
+        type: String,
+        default: ''
     },
-
     subject: {
         type: String,
     },
-
     price: {
         type: Number,
+        required: true,
     },
-
     deleted: {
-        type: boolean,
+        type: Boolean,
         default: false
     }
 

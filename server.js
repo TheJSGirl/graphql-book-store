@@ -1,16 +1,18 @@
-const express = require("express");
 require('dotenv').config();
+const express = require("express");
 const mainRoutes = require('./src/modules/index');
+const { App } = require('./src/config');
+const { middleware, database } = require('./src/lib');
 const app = express();
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
 
+middleware(app);
 mainRoutes(app);
+database.connect();
 
-app.get('/', (req, res) => {
-    console.log("here");
-})  
 
-app.listen(3000, (req, res) => {
-    console.log(`listing at port 3000`)
+app.listen(App.PORT, App.HOST, (e) => {
+    if(e) {
+        logger.error(e.message);
+    }
+    logger.info(`${App.NAME} running on ${App.HOST}:${App.PORT}`);
 })
