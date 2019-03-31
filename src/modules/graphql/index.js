@@ -14,18 +14,16 @@ const RootQuery = new GraphQLObjectType({
             args: {
                 id: { type: GraphQLID }
             },
-            resolve(parent, args) {
-                return findById(args.id)
-            }
+            resolve: (parent, args) => findById(args.id)
+            
         },
         books: {
             type: GraphQLList(BookType),
             args: {
                 deleted: { type: GraphQLBoolean }
             },
-            resolve(parent, args) {
-                return list();
-            }
+            resolve: (parent, args) => list()
+            
         },
     }
 });
