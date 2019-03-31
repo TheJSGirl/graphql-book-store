@@ -13,8 +13,8 @@ async function create(args) {
 }
 
 async function update(args) {
-    const { id, name, price, authors, edition, subject } = args;
-    return Book.findOneAndUpdate({ _id: id }, { name, price, authors, edition, subject }, { new: true });
+    const { id } = args;
+    return Book.findOneAndUpdate({ _id: id }, args , { new: true });
 }
 
 async function del(id) {
