@@ -1,7 +1,7 @@
 const Book  = require('./../books/models');
 const { BookType }  = require('./../books/schema');
 const {createBook} = require('../books/resolver');
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLSchema, GraphQLBoolean, GraphQLNonNull } = require('graphql');
+const { GraphQLObjectType, GraphQLID, GraphQLList, GraphQLSchema, GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql');
 
 
 const RootQuery = new GraphQLObjectType({
