@@ -10,7 +10,7 @@ async function create(args) {
 
 async function update(args) {
     const { id, name, price, authors, edition, subject } = args;
-    return Book.findOneAndUpdate({ _id: id }, { name, price, authors, edition, subject}, { new: true });
+    return Book.findOneAndUpdate({ _id: id }, { name, price, authors, edition, subject }, { new: true });
 }
 
 async function del(id) {
@@ -25,7 +25,7 @@ async function addAuthor(args) {
     } else {
         authors.push(args.author);
     }
-    return Book.findOneAndUpdate({_id: args.id}, { authors: authors}, { new: true });
+    return Book.findOneAndUpdate({_id: args.id}, { $set: { authors: authors} }, { new: true });
 }
 
 async function removeAuthor(id) {
