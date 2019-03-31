@@ -4,7 +4,7 @@ const graphqlHTTP = require('express-graphql');
 const mainRoutes = require('./src/modules/index');
 const { App } = require('./src/config');
 const { middleware, database } = require('./src/lib');
-// const schema = require('./src/modules/graphql');
+const { schema } = require('./src/modules/graphql');
 
 const app = express();
 
@@ -15,8 +15,8 @@ database.connect();
 const root = { hello: () => 'Hello world!' };
 
 app.use('/graphql', graphqlHTTP({
-    // schema: schema,
-    // rootValue: root,
+    schema: schema,
+    rootValue: root,
     graphiql: true,
 }));
 
