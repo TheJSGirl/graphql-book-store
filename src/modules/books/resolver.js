@@ -32,9 +32,15 @@ async function addAuthor(args) {
     return Book.findOneAndUpdate({_id: args.id}, { $set: { authors: authors} }, { new: true });
 }
 
-async function removeAuthor(id) {
-    return Book.findOneAndRemove({_id: id});
-}
+    async function rmuser(args) {
+        const book = await Book.findOne({_id: args.id});
+        let authors = book.authors;
+        if(!authors) {
+            return
+        }
+        const updatedAuthors = authors.filter(e => args.author.toLowerCase() !== e.toLowerCase());
+        return Book.findOneAndUpdate({_id: args.id}, { $set: { authors: updatedAuthors } }, { new: true });
+    }
 
 module.exports = {
     list,
@@ -43,5 +49,5 @@ module.exports = {
     update,
     findById,
     addAuthor,
-    removeAuthor
+    rmuser
 };
