@@ -38,7 +38,7 @@ const Mutations = new GraphQLObjectType({
                 name: { type: new GraphQLNonNull(GraphQLString)},
                 authors: {type: GraphQLList},
             },
-            resolve: (parent, args) => createBook(ars);
+            resolve: (parent, args) => createBook(ars)
         }
     }
 
