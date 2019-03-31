@@ -8,8 +8,9 @@ async function create(args) {
     return Book.create(args);
 }
 
-async function put(id, data) {
-    return Book.findOneAndUpdate({ _id: id }, data, { new: true });
+async function put(args) {
+    const { id, name, price, authors, edition, subject } = args;
+    return Book.findOneAndUpdate({ _id: id }, { name, price, authors, edition, subject}, { new: true });
 }
 
 async function patch(args) {

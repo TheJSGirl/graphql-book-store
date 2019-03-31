@@ -1,6 +1,6 @@
 const Book  = require('./../books/models');
 const { BookType }  = require('./../books/schema');
-const {create} = require('../books/resolver');
+const { create, put } = require('../books/resolver');
 const { GraphQLObjectType, GraphQLID, GraphQLList, GraphQLFloat, GraphQLSchema, GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql');
 
 
@@ -43,6 +43,18 @@ const Mutations = new GraphQLObjectType({
 
             },
             resolve: (parent, args) => create(args)
+        },
+        updateBook: {
+            type: BookType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID)},
+                name: { type: GraphQLString },
+                price: {type: GraphQLFloat },
+                authors: { type: GraphQLString},
+                edition: { type: GraphQLString },
+                subject: { type: GraphQLString },
+            },
+            resolve: (parent, args) => put(args)
         }
     }
 
