@@ -6,5 +6,5 @@ async function createBook(args) {
 }
 
 module.exports = {
-    create
+    createBook
 }
