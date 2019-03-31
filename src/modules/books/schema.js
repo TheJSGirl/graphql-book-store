@@ -15,6 +15,15 @@ const BookType = new GraphQLObjectType({
     }
 });
 
+const AuthorType = new GraphQLObjectType({
+    name: "Author",
+    fields: {
+        authors: { type: GraphQLList(GraphQLString) },
+        book: { type: BookType }
+    }
+});
+
 module.exports = {
-    BookType
-}
+    BookType,
+    AuthorType
+};
