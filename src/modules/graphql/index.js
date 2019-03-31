@@ -1,6 +1,6 @@
 const Book  = require('./../books/models');
 const { BookType }  = require('./../books/schema');
-const { create, put } = require('../books/resolver');
+const { create, update } = require('../books/resolver');
 const { GraphQLObjectType, GraphQLID, GraphQLList, GraphQLFloat, GraphQLSchema, GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql');
 
 

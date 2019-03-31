@@ -8,19 +8,9 @@ async function create(args) {
     return Book.create(args);
 }
 
-async function put(args) {
+async function update(args) {
     const { id, name, price, authors, edition, subject } = args;
     return Book.findOneAndUpdate({ _id: id }, { name, price, authors, edition, subject}, { new: true });
-}
-
-async function patch(args) {
-    const {id ,user, name, author, edition } = args;
-    const data = {
-        name,
-        author,
-        edition
-    };
-    return Book.findOneAndUpdate({ _id: id }, data, { new: true });
 }
 
 async function del(id) {
@@ -30,7 +20,6 @@ async function del(id) {
 module.exports = {
     list,
     create,
-    patch,
     del,
-    put,
+    update,
 };
