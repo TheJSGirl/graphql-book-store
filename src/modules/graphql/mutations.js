@@ -1,7 +1,7 @@
 const Book  = require('./../books/models');
 const { BookType }  = require('./../books/schema');
-const { create, update, list, findById, del} = require('../books/resolver');
-const { GraphQLObjectType, GraphQLID, GraphQLList, 
+const { create, update,addAuthor,removeAuthor , findById, del} = require('../books/resolver');
+const { GraphQLObjectType, GraphQLID, GraphQLList,
         GraphQLFloat, GraphQLSchema,
         GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql');
 
@@ -34,6 +34,22 @@ const Mutations = new GraphQLObjectType({
             },
             resolve: (parent, args) => update(args)
         },
+        addAuthor: {
+            type: BookType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID)},
+                author: { type: GraphQLNonNull(GraphQLString)},
+            },
+            resolve: (parent, args) => addAuthor(args)
+        },
+        removeAuthor: {
+            type: BookType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID)},
+                author: { type: GraphQLNonNull(GraphQLString)},
+            },
+            resolve: (parent, args) => update(args)
+        },
         deleteBook: {
             type: BookType,
             args: {
@@ -43,8 +59,8 @@ const Mutations = new GraphQLObjectType({
         }
     }
 
-})
+});
 
 module.exports = {
     Mutations
-}
+};

@@ -1,7 +1,7 @@
 const Book  = require('./../books/models');
 const { BookType }  = require('./../books/schema');
 const { create, update, list, findById, del} = require('../books/resolver');
-const { GraphQLObjectType, GraphQLID, GraphQLList, 
+const { GraphQLObjectType, GraphQLID, GraphQLList,
         GraphQLFloat, GraphQLSchema,
         GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql');
 
@@ -21,7 +21,7 @@ const RootQuery = new GraphQLObjectType({
             args: {
                 deleted: { type: GraphQLBoolean }
             },
-            resolve: (parent, args) => list()
+            resolve: (parent, args) => list(args.deleted)
             
         },
     }
