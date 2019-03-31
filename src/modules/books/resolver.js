@@ -1,7 +1,11 @@
 const Book = require('./models');
 
-async function list(args){
-    return Book.find(args);
+async function list(){
+    return Book.find();
+}
+
+async function findById(args){
+    return Book.findById(args.id);
 }
 
 async function create(args) {
@@ -22,4 +26,5 @@ module.exports = {
     create,
     del,
     update,
+    findById
 };

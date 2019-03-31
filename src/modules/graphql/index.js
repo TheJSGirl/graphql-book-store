@@ -1,7 +1,9 @@
 const Book  = require('./../books/models');
 const { BookType }  = require('./../books/schema');
-const { create, update } = require('../books/resolver');
-const { GraphQLObjectType, GraphQLID, GraphQLList, GraphQLFloat, GraphQLSchema, GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql');
+const { create, update, list, findById, del} = require('../books/resolver');
+const { GraphQLObjectType, GraphQLID, GraphQLList, 
+        GraphQLFloat, GraphQLSchema,
+        GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql');
 
 
 const RootQuery = new GraphQLObjectType({
@@ -13,7 +15,7 @@ const RootQuery = new GraphQLObjectType({
                 id: { type: GraphQLID }
             },
             resolve(parent, args) {
-                return Book.findById(args.id)
+                return findById(args.id)
             }
         },
         books: {
@@ -22,9 +24,9 @@ const RootQuery = new GraphQLObjectType({
                 deleted: { type: GraphQLBoolean }
             },
             resolve(parent, args) {
-                return Book.find({});
+                return list();
             }
-        }
+        },
     }
 });
 
@@ -34,10 +36,10 @@ const Mutations = new GraphQLObjectType({
         createBook: {
             type: BookType,
             args: {
-                user: { type: new GraphQLNonNull(GraphQLString)},
-                name: { type: new GraphQLNonNull(GraphQLString)},
-                authors: { type: GraphQLString},
-                price: {type: new GraphQLNonNull(GraphQLFloat) },
+                user: { type: new GraphQLNonNull(GraphQLString) },
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                authors: { type: GraphQLString },
+                price: { type: new GraphQLNonNull(GraphQLFloat) },
                 edition: { type: GraphQLString },
                 subject: { type: GraphQLString },
 
@@ -50,11 +52,18 @@ const Mutations = new GraphQLObjectType({
                 id: { type: new GraphQLNonNull(GraphQLID)},
                 name: { type: GraphQLString },
                 price: {type: GraphQLFloat },
-                authors: { type: GraphQLString},
+                authors: { type: GraphQLString },
                 edition: { type: GraphQLString },
                 subject: { type: GraphQLString },
             },
             resolve: (parent, args) => update(args)
+        },
+        deleteBook: {
+            type: BookType,
+            args: {
+                id: { type: GraphQLString }
+            },
+            resolve: (parent, args) => del(args.id)
         }
     }
 
