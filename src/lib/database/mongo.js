@@ -8,7 +8,7 @@ function connect() {
     mongoose.connection.once('open', () => {
         logger.info(`mongodb running @ ${MongoDBSettings.url}`);
     }).on('error', e => {
-        logger.error(e);
+        logger.error('Monogo Error');
     });
 }
 
