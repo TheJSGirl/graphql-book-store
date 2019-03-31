@@ -1,7 +1,7 @@
 const Book  = require('./../books/models');
 const { BookType }  = require('./../books/schema');
 const {create} = require('../books/resolver');
-const { GraphQLObjectType, GraphQLID, GraphQLList, GraphQLSchema, GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql');
+const { GraphQLObjectType, GraphQLID, GraphQLList, GraphQLFloat, GraphQLSchema, GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql');
 
 
 const RootQuery = new GraphQLObjectType({
@@ -37,9 +37,10 @@ const Mutations = new GraphQLObjectType({
                 user: { type: new GraphQLNonNull(GraphQLString)},
                 name: { type: new GraphQLNonNull(GraphQLString)},
                 authors: { type: GraphQLString},
-                price: { type: GraphQLString },
+                price: {type: new GraphQLNonNull(GraphQLFloat) },
                 edition: { type: GraphQLString },
-                subject: { type: GraphQLString }
+                subject: { type: GraphQLString },
+
             },
             resolve: (parent, args) => create(args)
         }
