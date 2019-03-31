@@ -22,3 +22,7 @@ const BookType = new GraphQLObjectType({
     }
 });
 
+
+module.exports = {
+    BookType
+}
