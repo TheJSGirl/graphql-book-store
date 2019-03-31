@@ -1,6 +1,6 @@
 const Book = require('./models');
 
-async function create(args) {
+async function createBook(args) {
        return Book.create(args);
        
 }
