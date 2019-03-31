@@ -1,6 +1,6 @@
 const Book  = require('./../books/models');
 const { BookType }  = require('./../books/schema');
-const {createBook} = require('../books/resolver');
+const {create} = require('../books/resolver');
 const { GraphQLObjectType, GraphQLID, GraphQLList, GraphQLSchema, GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql');
 
 
@@ -36,16 +36,20 @@ const Mutations = new GraphQLObjectType({
             args: {
                 user: { type: new GraphQLNonNull(GraphQLString)},
                 name: { type: new GraphQLNonNull(GraphQLString)},
-                authors: {type: GraphQLList},
+                authors: { type: GraphQLString},
+                price: { type: GraphQLString },
+                edition: { type: GraphQLString },
+                subject: { type: GraphQLString }
             },
-            resolve: (parent, args) => createBook(ars)
+            resolve: (parent, args) => create(args)
         }
     }
 
 })
 
 const schema = new GraphQLSchema({
-   query: RootQuery
+   query: RootQuery,
+   mutation: Mutations
 });
 
 module.exports = {
