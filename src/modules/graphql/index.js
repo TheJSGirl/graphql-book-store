@@ -54,7 +54,7 @@ const Mutations = new GraphQLObjectType({
                 edition: { type: GraphQLString },
                 subject: { type: GraphQLString },
             },
-            resolve: (parent, args) => put(args)
+            resolve: (parent, args) => update(args)
         }
     }
 
