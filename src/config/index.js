@@ -42,7 +42,13 @@ const BasicConfiguration  = {
         jwt_sceret: JWT_SECRET, 
         jwt_exp: JWT_EXP
     
+    },
+    services: {
+        userService: {
+            url: 'http://localhost:3000/graphql'
+        }
     }
+
 };
 
 module.exports = Object.freeze(BasicConfiguration);
