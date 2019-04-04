@@ -9,6 +9,10 @@ async function findById(args){
 }
 
 async function create(args) {
+    const { user } = await validateUser(args.user);
+    if(!user) {  
+        return false;
+    }
     return Book.create(args);
 }
 
