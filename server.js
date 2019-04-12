@@ -4,6 +4,7 @@ const graphqlHTTP = require('express-graphql');
 const { App } = require('./src/config');
 const { database } = require('./src/lib');
 const { schema } = require('./src/modules/graphql');
+const swaggerJSDoc = require('swagger-jsdoc');
 
 const app = express();
 
